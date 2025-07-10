@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    source/colorrectitem.cpp \
     source/simulator.cpp \
     source/xmloperator.cpp \
     source/conditioner.cpp \
@@ -17,6 +18,7 @@ SOURCES += \
     source/settings.cpp
 
 HEADERS += \
+    include/colorrectitem.h \
     include/conditioner.h \
     include/mainwindow.h \
     include/settings.h \

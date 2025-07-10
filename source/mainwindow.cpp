@@ -13,26 +13,34 @@ MainWindow::MainWindow(QWidget *parent)
     connect(action_quit, &QAction::triggered, this, &QMainWindow::close);
     connect(action_settings, &QAction::triggered, this, &MainWindow::slot_openSettings);
     connect(action_simulator, &QAction::triggered, this, &MainWindow::slot_openSimulator);
+    connect(this, &MainWindow::signal_switch_pressed, this, &MainWindow::slot_cond_setColor);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete scene;
-    delete cond1;
-    delete cond2;
-    delete cond3;
 }
 
 void MainWindow::initGraphics()
 {
     scene = new QGraphicsScene();
 
-    QGraphicsRectItem *cond1 = scene->addRect(50, 30, 120, 90);
-    QGraphicsRectItem *cond2 = scene->addRect(200, 30, 120, 90);
-    QGraphicsRectItem *cond3 = scene->addRect(125, 145, 120, 90);
+    rect1 = new ColorRectItem(QRectF(30, 20, 120, 90));
+    rect2 = new ColorRectItem(QRectF(180, 20, 120, 90));
+    rect3 = new ColorRectItem(QRectF(105, 140, 120, 90));
+    scene->addItem(rect1);
+    scene->addItem(rect2);
+    scene->addItem(rect3);
 
     ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::slot_cond_setColor(const QColor &color)
+{
+    rect1->setColor(color);
+    rect2->setColor(color);
+    rect3->setColor(color);
 }
 
 void MainWindow::on_dial_temperature_valueChanged(int value)
@@ -51,10 +59,15 @@ void MainWindow::on_dial_angle_valueChanged(int angle)
 
 void MainWindow::on_btn_switch_clicked()
 {
-    if(ui->btn_switch->isChecked()) ui->btn_switch->setText("Выключить");
-    else                            ui->btn_switch->setText("Включить");
-
-    emit signal_switch_pressed();
+    if(ui->btn_switch->isChecked())
+    {
+        ui->btn_switch->setText("Выключить");
+        emit signal_switch_pressed(Qt::green);
+    }
+    else {
+        ui->btn_switch->setText("Включить");
+        emit signal_switch_pressed(Qt::gray);
+    }
 }
 
 void MainWindow::initMenu()

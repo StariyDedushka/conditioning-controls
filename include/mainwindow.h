@@ -7,8 +7,8 @@
 #include <QDebug>
 #include "structs.h"
 #include <QtNumeric>
-
-QT_BEGIN_NAMESPACE
+#include "colorrectitem.h"
+ QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
 }
@@ -21,7 +21,7 @@ class MainWindow : public QMainWindow
 signals:
     void signal_dial_temp_changed(qint32 temperature);
     void signal_dial_direction_changed(quint32 direction);
-    void signal_switch_pressed();
+    void signal_switch_pressed(QColor color);
     void signal_openSettings();
     void signal_openSim();
     void signal_temperatureModeChanged(qint32 mode);
@@ -38,6 +38,7 @@ private slots:
     void slot_openSettings();
     void slot_openSimulator();
     void on_dial_angle_valueChanged(int angle);
+    void slot_cond_setColor(const QColor &color);
 
 public slots:
     void slot_tempMode(qint32 mode);
@@ -60,10 +61,8 @@ private:
     QAction *action_quit;
 
     QGraphicsScene *scene;
-    QGraphicsItem *cond1;
-    QGraphicsItem *cond2;
-    QGraphicsItem *cond3;
 
+    ColorRectItem *rect1, *rect2, *rect3;
 
 };
 #endif // MAINWINDOW_H

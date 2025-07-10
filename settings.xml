@@ -2,4 +2,4 @@
 <Data>
     <temperatureMode type="tempMode">1</temperatureMode>
     <pressureMode type="pressureMode">1</pressureMode>
-    <direction type="quint32">67</direction>
+    <direction type="quint32">284</direction>
