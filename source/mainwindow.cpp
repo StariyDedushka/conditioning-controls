@@ -14,12 +14,20 @@ MainWindow::MainWindow(QWidget *parent)
     connect(action_settings, &QAction::triggered, this, &MainWindow::slot_openSettings);
     connect(action_simulator, &QAction::triggered, this, &MainWindow::slot_openSimulator);
     connect(this, &MainWindow::signal_switch_pressed, this, &MainWindow::slot_cond_setColor);
+    connect(StyleManager::instance(), &StyleManager::signal_styleChanged, this, &MainWindow::slot_updateStyle);
+
+    slot_updateStyle(StyleManager::instance()->currentStyle());
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
     delete scene;
+}
+
+void MainWindow::slot_updateStyle(const QString &newStyle)
+{
+    setStyleSheet(newStyle);
 }
 
 void MainWindow::initGraphics()

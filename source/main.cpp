@@ -21,6 +21,7 @@ int main(int argc, char *argv[])
     Settings sett;
     Conditioner cond;
     Simulator sim;
+    StyleManager::instance();
 
     if(QMetaType::type("info") == QMetaType::UnknownType)
         qDebug() << "Type info is not registered!";
@@ -58,8 +59,6 @@ int main(int argc, char *argv[])
     Settings::connect(&sett, &Settings::signal_pressModeChanged, &sim, &Simulator::slot_pressureMode);
     Settings::connect(&sett, &Settings::signal_tempModeChanged, &sim, &Simulator::slot_tempMode);
     Simulator::connect(&cond, &Conditioner::signal_loadSettings, &sim, &Simulator::slot_loadSettings);
-
-
 
 
     sett.initialize();

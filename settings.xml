@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Data>
-    <temperatureMode type="tempMode">1</temperatureMode>
-    <pressureMode type="pressureMode">1</pressureMode>
-    <direction type="quint32">284</direction>
+    <temperatureMode type="tempMode">2</temperatureMode>
+    <pressureMode type="pressureMode">0</pressureMode>
+    <direction type="quint32">129</direction>

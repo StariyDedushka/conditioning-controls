@@ -13,6 +13,37 @@
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QMainWindow {
+	background: rgb(36, 31, 49);
+}
+QGraphicsView {
+	background: rgb(192, 191, 188);
+}
+
+QLabel {
+	color: white;
+}
+
+QGroupBox {
+	color: white;
+}
+
+QLCDNumber {
+	color: white;
+	border: white;
+}
+
+QDial {
+	color:white;
+	background: rgb(89, 89, 89);
+}
+
+QPushButton{
+	color:white;
+	background: rgb(89, 89, 89);
+}</string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QHBoxLayout" name="horizontalLayout_2">
     <item>

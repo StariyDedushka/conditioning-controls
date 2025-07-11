@@ -11,12 +11,6 @@
 class XmlOperator : public QObject
 {
     Q_OBJECT
-signals:
-    // void signal_tempMode(tempMode mode);
-    // void signal_pressureMode(pressureMode mode);
-    void signal_xml_elementName(const QString &elementName);
-    void signal_xml_attribute(const QString &attributeName);
-    void signal_xml_text(const QString &xmlText);
 
 public:
     XmlOperator();
@@ -27,7 +21,19 @@ private:
     tempMode temp;
     pressureMode press;
 public:
+    /**
+     * @brief Запись файла XML с настройками программы
+     * @param savePath Путь сохранения настроек
+     * @param _tempMode Система счисления температуры, установленная в программе
+     * @param _pressMode Система счисления давления, установленная в программе
+     * @param direction Направление подачи воздуха, установленное в программе
+     */
     void writeXml(QString savePath, tempMode _tempMode, pressureMode _pressMode, quint32 direction);
+
+    /**
+     * @brief Читает XML файл с настройками
+     * @return Возвращает структуру info со всеми сохраненными в файле данными
+     */
     info readXml();
 };
 

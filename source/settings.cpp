@@ -8,6 +8,9 @@ Settings::Settings(QWidget *parent)
     ui->setupUi(this);
     setupGroupBoxes();
     this->setWindowTitle("Настройки");
+    darkMode = false;
+    connect(StyleManager::instance(), &StyleManager::signal_styleChanged, this, &Settings::slot_updateStyle);
+    slot_updateStyle(StyleManager::instance()->currentStyle());
 }
 
 Settings::~Settings()
@@ -18,6 +21,11 @@ Settings::~Settings()
 void Settings::initialize()
 {
     emit signal_pressModeChanged(currentPressure);
+}
+
+void Settings::slot_updateStyle(const QString &newStyle)
+{
+    setStyleSheet(newStyle);
 }
 
 void Settings::on_comboBox_temp_activated(int index)
@@ -51,10 +59,6 @@ void Settings::on_comboBox_pressure_activated(int index)
     }
 }
 
-void Settings::on_btn_reset_clicked()
-{
-    emit signal_default_pressed();
-}
 
 void Settings::setupGroupBoxes() {
 
@@ -86,3 +90,11 @@ void Settings::slot_start()
 {
     this->show();
 }
+
+void Settings::on_checkBox_darkMode_stateChanged(int arg1)
+{
+    darkMode = !darkMode;
+    if(darkMode) StyleManager::instance()->setStyleDark(true);
+    else StyleManager::instance()->setStyleDark(false);
+}
+

@@ -6,6 +6,12 @@ Simulator::Simulator() :
 {
     ui->setupUi(this);
     this->setWindowTitle("Симулятор");
+    connect(StyleManager::instance(), &StyleManager::signal_styleChanged, this, &Simulator::slot_updateStyle);
+}
+
+void Simulator::slot_updateStyle(const QString &newStyle)
+{
+    setStyleSheet(newStyle);
 }
 
 void Simulator::slot_tempMode(qint32 newMode)
